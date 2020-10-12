@@ -49,11 +49,17 @@ ul {
 }
 
 .todo-delete {
-  margin: 10px;
+  margin: 0 auto;
+  margin-right: 0px;
+  height: 20px;
+  width: 20px;
+  float: right;
 }
 
 .todo-checkbox {
-  margin: 10px;
+  margin: 5px auto;
+  margin-right: 10px;
+  float: right;
 }
 
 .todo-container {
