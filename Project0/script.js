@@ -15,6 +15,7 @@ function newTodo() {
   if(isInputValid(inputText.value)) {
     createToDo()
     incrementTodoCount()
+    incrementUncheckedCount()
   }
 }
 
@@ -48,7 +49,7 @@ function createToDo() {
   delButton.setAttribute('class', classNames.TODO_DELETE)
   delButton.addEventListener('click', function() {
     decrementTodoCount()
-    if(cbox.checked) { // if checked, decrement checked count
+    if(!cbox.checked) { // if checked, decrement checked count
       decrementUncheckedCount()
     }
     removeToDo(toDo)
@@ -88,7 +89,7 @@ function decrementUncheckedCount() {
 
 // method to determine inc or dec unchecked count
 function toggleUncheckedCount(checked) {
-  if(!checked) {
+  if(checked) {
     decrementUncheckedCount()
   } else {
     incrementUncheckedCount()
