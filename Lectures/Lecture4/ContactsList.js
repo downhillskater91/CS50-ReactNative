@@ -36,7 +36,7 @@ const ContactsList = props => {
       renderItem={renderItem}
       renderSectionHeader={renderSectionHeader}
       sections={sections}
-      keyExtractor={(obj) => obj.key.toString()}
+      /*keyExtractor={(obj) => obj.key.toString()}*/
     />
   );
 }
@@ -51,5 +51,6 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 24,
     fontWeight: "bold",
-  }
+    padding: 10,
+  },
 })

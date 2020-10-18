@@ -19,6 +19,14 @@ export default class App extends React.Component {
     this.sort(); // sort the list before rendering
   }
 
+  addContact = newContact => {
+    // update the contacts and hide form
+    this.setState(prevState => ({
+      showForm: false,
+      contacts: [...prevState.contacts, newContact],
+    }));
+  }
+
   // toggles the contacts list
   toggleContacts = () => {
     this.setState(prevState => ({
@@ -41,7 +49,7 @@ export default class App extends React.Component {
   }
 
   render() {
-    if(this.state.showForm) return <AddContactForm />
+    if(this.state.showForm) return <AddContactForm onSubmit={this.addContact} />
     return (
       <View style={styles.container}>
         <View style={styles.buttonContainer}>
