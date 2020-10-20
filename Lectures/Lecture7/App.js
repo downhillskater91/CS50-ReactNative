@@ -162,7 +162,7 @@ export default class App extends React.Component {
   componentDidMount() {
     this.getContacts();
   }
-
+  
   getContacts = async () => {
     const results = await fetchContacts();
     this.setState({

@@ -94,11 +94,12 @@ const styles = StyleSheet.create({
   input: {
     borderColor: "black",
     borderWidth: 1,
-    marginTop: 20,
+    marginTop: 10,
     minWidth: 100,
     marginHorizontal: 20,
     paddingHorizontal: 10,
     paddingVertical: 10,
-    borderRadius: 3,
+    borderRadius: 5,
+    fontSize: 18,
   },
 });
