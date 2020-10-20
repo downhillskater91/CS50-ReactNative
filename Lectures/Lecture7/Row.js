@@ -1,5 +1,6 @@
 import React from 'react';
 import { TouchableOpacity, View, Text, StyleSheet } from 'react-native';
+import PropTypes from 'prop-types';
 
 const Row = (props) => (
 	<TouchableOpacity 
@@ -12,6 +13,11 @@ const Row = (props) => (
 		<Text style={styles.phoneText}>{props.phone}</Text>
 	</TouchableOpacity>
 );
+
+Row.propTypes = {
+	name: PropTypes.string,
+	phone: PropTypes.string,
+}
 
 export default Row;
 

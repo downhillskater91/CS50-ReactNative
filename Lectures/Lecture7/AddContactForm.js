@@ -8,6 +8,7 @@ export default class AddContactForm extends React.Component {
   state = {
     name: '',
     phone: '',
+    typedPhone: '',
     isFormValid: false,
   };
 
@@ -17,33 +18,31 @@ export default class AddContactForm extends React.Component {
     }
   }
 
-  /*
-  getHandler = key => val => {
-    this.setState({[key]: val})
-  }
-  */
-
-  //handleNameChange = this.getHandler("name"); // val => {this.setState({name: val})}
-  //handlePhoneChange = this.getHandler("phone");
-
   handleNameChange = name => {
     // validateForm is called after setState
     this.setState({name});
   }
 
-  handlePhoneChange = phone => {
+  handlePhoneChange = typedPhone => {
     // Make sure the number is valid
     // (validateForm is called after setState)
-    if(+phone >= 0 && phone.length <= 10) {
-      this.setState({phone});
+    if(+typedPhone >= 0 && typedPhone.length <= 10) {
+      if(typedPhone.length == 10) {
+        this.setState({
+          typedPhone,
+          phone: `(${typedPhone.slice(0,3)})-${typedPhone.slice(3,6)}-${typedPhone.slice(6)}`
+        });
+      } else {
+        this.setState({typedPhone});
+      }
     }
   }
 
   validateForm = () => {
     const names = this.state.name.split(" ");
 
-    if(+this.state.phone >= 0 &&
-      this.state.phone.length === 10 && 
+    if(+this.state.typedPhone >= 0 &&
+      this.state.typedPhone.length === 10 && 
       this.state.name.length >= 3 &&
       names.length >= 2 && names[0] && names[1]) {
         return this.setState({isFormValid: true});
@@ -69,8 +68,8 @@ export default class AddContactForm extends React.Component {
           placeholder="Name"
         />
         <TextInput 
-          style={styles.input} 
-          value={this.state.phone} 
+          style={styles.input}
+          value={this.state.typedPhone}
           onChangeText={this.handlePhoneChange}
           keyboardType={"numeric"}
           placeholder="Phone"
