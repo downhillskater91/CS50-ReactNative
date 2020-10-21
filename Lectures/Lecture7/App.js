@@ -12,7 +12,8 @@ import LoginScreen from './screens/LoginScreen';
 import SettingsScreen from './screens/SettingsScreen';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import contacts, { compareNames } from './contacts';
+import { fetchContacts } from './api';
+import { compareNames } from './contacts';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 const Tab = createBottomTabNavigator();
@@ -157,6 +158,18 @@ export default class App extends React.Component {
     isLoggedIn: false,
   };
 
+  // call the API to get the contacts from randomuser.me
+  componentDidMount() {
+    this.getContacts();
+  }
+  
+  getContacts = async () => {
+    const results = await fetchContacts();
+    this.setState({
+      contacts: results
+    });
+  }
+
   // Takes the contact list and sorts it alphabetically
   sort = () => {
     this.setState(prevState => ({
@@ -169,7 +182,7 @@ export default class App extends React.Component {
     this.setState(prevState => ({
       contacts: [...prevState.contacts, newContact],
     }));
-    this.sort(); // sort after adding a contact
+    this.sort();
   }
 
   toggleLogin = () => {
